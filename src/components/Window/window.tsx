@@ -27,11 +27,15 @@ const Window = (props: WindowInfo) => {
 
   const handleClick = (e: any) => {
     const elements = document.getElementsByClassName('window') as HTMLCollectionOf<HTMLElement>;
+    const currentZIndex = Number(e.currentTarget.style.zIndex);
     for(let i = 0; i < elements.length; i++) {
-      if (elements[i].id !== 'success' && elements[i].id !== 'error') {
-        elements[i].style.zIndex = '1';
+      if (elements[i].id !== 'success' && elements[i].id !== 'error' && currentZIndex < elements.length) {
+        const zIndex = Number(elements[i].style.zIndex);
+        if (zIndex > 1) {
+          elements[i].style.zIndex = (zIndex - 1).toString()
+        }
       }
-      e.currentTarget.style.zIndex = '2';
+      e.currentTarget.style.zIndex = Number(elements.length);
     }
   }
 
