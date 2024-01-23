@@ -1,0 +1,65 @@
+.title-bar {
+  background: #ddd;
+  height: 30px;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.header {
+  margin-left: 10px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  word-wrap: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #444;
+}
+
+.title {
+  margin-left: 5px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.window-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 5px;
+  gap: 5px;
+}
+
+.window-button {
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+}
+
+.minimize {
+  background-color: #999;
+}
+
+.maximize {
+  background-color: #474;
+}
+
+.close {
+  background-color: #c40;
+}
+
+.close-icon {
+  position: absolute;
+  font-size: 1.3em;
+  margin-top: 0px;
+  line-height: 20px;
+  margin-left: 2px;
+}

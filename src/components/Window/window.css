@@ -1,0 +1,32 @@
+.window {
+  background: #FFF;
+  color: #FFFFFF;
+  display: block;
+  position: absolute;
+  border-radius: 5px;
+  overflow: hidden;
+  min-height: 50px;
+  min-width: 20px;
+  resize: both;
+  box-shadow: 0px 0px 5px #555;
+}
+
+.window-content {
+  height: calc(100% - 33px);
+  color: #000;
+  overflow: auto;
+  background-size: cover;
+}
+
+.poster {
+  max-height: calc(100% - 3px);
+  max-width: 100%;
+}
+
+.message {
+  margin: 10px 10px 10px 10px;
+}
+
+#success > .window-content {
+  background: #eee;
+}
