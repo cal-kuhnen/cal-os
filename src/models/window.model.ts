@@ -5,19 +5,29 @@ export interface Position {
   y: number;
 }
 
-export interface WindowInfo {
-  id?: string;
+export interface WindowInfo extends WindowInitial {
+  id: number;
+  z?: number;
+  removeWindow: any;
+}
+
+export interface WindowInitial {
   title: string;
   icon?: string;
   height: string;
   width: string;
   x: number;
   y: number;
-  z?: number;
   content: () => ReactElement;
 }
 
 export interface TitleBar {
   title: string;
   icon: string;
+}
+
+export interface WindowArray {
+  windows: WindowInfo[];
+  addWindow: any;
+  removeWindow: any;
 }

@@ -2,39 +2,48 @@ import { useState } from 'react';
 import Taskbar from '../Taskbar/taskbar';
 import Window from '../Window/window';
 import './desktop.css';
+import { WindowInfo, WindowInitial } from '../../models/window.model';
 
 const Desktop = () => {
   const [mobile, setMobile] = useState(window.innerWidth <= 500);
+  const [windows, setWindows] = useState<WindowInfo[]>([]);
+
+  const addWindow = (window: WindowInitial) => {
+    console.log('adding window');
+    const newWindows = [...windows];
+    const zSetWindow: WindowInfo = {
+      ...window,
+      id: 1,
+      z: windows.length + 1,
+      removeWindow: removeWindow,
+    };
+    newWindows.unshift(zSetWindow);
+    setWindows(newWindows);
+    console.log(windows);
+  }
+
+  const removeWindow = (windowId: number) => {
+    const newWindows = windows;
+    newWindows.splice(newWindows.findIndex(window => window.id === windowId), 1);
+    setWindows(newWindows);
+  }
+
   return (
     <div id="desktop" className="desktop">
-      <Window 
-        id='test'
-        title='Test' 
-        height={ mobile ? 'calc(100vh - 30px)' : '90vh'} 
-        width={ mobile ? '100vw' : '53vw'} 
-        x={mobile ? 0 : 1} 
-        y={mobile ? 0 : 3} 
-        z={ 1 }
-        content={() => <div></div>}/>
+      { windows.map(window => (
         <Window 
-        id='test2'
-        title='Test2' 
-        height={ mobile ? 'calc(100vh - 30px)' : '50vh'} 
-        width={ mobile ? '100vw' : '40vw'} 
-        x={mobile ? 0 : 2} 
-        y={mobile ? 0 : 3} 
-        z={ 2 }
-        content={() => <div></div>}/>
-        <Window 
-        id='test3'
-        title='Test3' 
-        height={ mobile ? 'calc(100vh - 30px)' : '60vh'} 
-        width={ mobile ? '100vw' : '10vw'} 
-        x={mobile ? 0 : 3} 
-        y={mobile ? 0 : 3} 
-        z={ 3 }
-        content={() => <div></div>}/>
-      <Taskbar/>
+          id={ window.id }
+          title={ window.title }
+          height={ window.height } 
+          width={ window.width }
+          x={ window.x }
+          y={ window.y }
+          z={ window.z }
+          content={ window.content }
+          removeWindow={ removeWindow }
+        />
+      ))}
+      <Taskbar windows={windows} addWindow={addWindow} removeWindow={removeWindow} />
     </div>
   )
 }

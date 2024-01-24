@@ -31,8 +31,6 @@ const Window = (props: WindowInfo) => {
     for(let i = 0; i < elements.length; i++) {
       const zIndex = Number(elements[i].style.zIndex);
       if (
-        elements[i].id !== 'success' && 
-        elements[i].id !== 'error' && 
         currentZIndex < elements.length && 
         zIndex > 1
       ) {
@@ -45,7 +43,7 @@ const Window = (props: WindowInfo) => {
   const content = props.content();
 
   return (
-    <div key={props.title} id={props.id} className='window' style={initialSize} ref={ref as any} onMouseDown={handleClick}>
+    <div key={props.id} className='window' style={initialSize} ref={ref as any} onMouseDown={handleClick}>
       <Titlebar title={props.title} icon={props.icon ? props.icon : ''}/>
       <div className='window-content'>
         {content}
