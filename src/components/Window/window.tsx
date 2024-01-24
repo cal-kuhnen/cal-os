@@ -40,11 +40,15 @@ const Window = (props: WindowInfo) => {
     }
   }
 
+  const closeWindow = () => {
+    props.removeWindow(props.id);
+  }
+
   const content = props.content();
 
   return (
     <div key={props.id} className='window' style={initialSize} ref={ref as any} onMouseDown={handleClick}>
-      <Titlebar title={props.title} icon={props.icon ? props.icon : ''}/>
+      <Titlebar title={props.title} icon={props.icon ? props.icon : ''} closeWindow={closeWindow}/>
       <div className='window-content'>
         {content}
       </div>

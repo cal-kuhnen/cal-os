@@ -7,23 +7,23 @@ import { WindowInfo, WindowInitial } from '../../models/window.model';
 const Desktop = () => {
   const [mobile, setMobile] = useState(window.innerWidth <= 500);
   const [windows, setWindows] = useState<WindowInfo[]>([]);
+  const [pid, setPid] = useState(1);
 
   const addWindow = (window: WindowInitial) => {
-    console.log('adding window');
+    setPid(pid + 1);
     const newWindows = [...windows];
     const zSetWindow: WindowInfo = {
       ...window,
-      id: 1,
+      id: pid,
       z: windows.length + 1,
       removeWindow: removeWindow,
     };
     newWindows.unshift(zSetWindow);
     setWindows(newWindows);
-    console.log(windows);
   }
 
   const removeWindow = (windowId: number) => {
-    const newWindows = windows;
+    const newWindows = [...windows];
     newWindows.splice(newWindows.findIndex(window => window.id === windowId), 1);
     setWindows(newWindows);
   }
@@ -32,6 +32,7 @@ const Desktop = () => {
     <div id="desktop" className="desktop">
       { windows.map(window => (
         <Window 
+          key={ window.id }
           id={ window.id }
           title={ window.title }
           height={ window.height } 

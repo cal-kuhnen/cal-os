@@ -13,7 +13,7 @@ const Titlebar = (props: TitleBar) => {
         </div>
         <div className='window-button maximize'>
         </div>
-        <div className='window-button close'>
+        <div className='window-button close' onClick={() => props.closeWindow()}>
         </div>
       </div>
     </div>

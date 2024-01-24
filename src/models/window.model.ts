@@ -24,6 +24,7 @@ export interface WindowInitial {
 export interface TitleBar {
   title: string;
   icon: string;
+  closeWindow: any;
 }
 
 export interface WindowArray {
